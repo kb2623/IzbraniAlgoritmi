@@ -1,0 +1,46 @@
+lcg():
+	O(lcg()) = 
+	O(2)
+
+random(a, b):
+	O(random(a, b)) = 
+	O(1 + O(lcg()) = 
+	O(1 + 2) = 
+	O(3)
+
+testNaive(r):
+	O(testNaive(r)) = 
+	O(O(Math.sqrt(r) + 1 + sqrt(r) / 2 + 1)) = 
+	O(2 + O(Math.sqrt(r)) + sqrt(r) / 2) =
+	O(O(Math.sqrt(r)) + sqrt(r) / 2)
+
+naive():
+	O(naive()) = 
+	O(O(lcg()) + 1 + O(testNaive(x)) * (1 / (2 * log(x))) + 1) =
+	O(4 + O(testNaive(x)) * (1 / (2 * log(x))))
+
+modPow(n, p, m):
+	O(modPow(n, p, m)) =
+	O(3 + 3 * log(n)) =
+	O(3 * log(n))
+
+loop(r, k, x):
+	O(loop(r, k, x)) =
+	O(1 + k - 1) =
+	O(k)
+
+solveEq(r):
+	O(solveEq(r)) =
+	O(2 + log(r - 1)) =
+	O(log(r - 1))
+
+testMilerRabin(r, s):
+	O(testMilerRabin(r, s)) =
+	O(1 + 1 + O(solveEq(r)) + s * (O(random(2, r - 2)) + O(modPow(a, d, r)) + O(loop(r, k, x))) + 1) =
+	O(3 + log(n) + s * (3 + 3 * log(n) + k)) =
+	O(log(n) + 3 * s + 3 * s * log(n) + s * k)
+	
+milerRabin(s):
+	O(milerRabin(s)) =
+	O(lcg() + 1 + O(testMilerRabin(r, s))) =
+
